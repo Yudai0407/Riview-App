@@ -1,13 +1,399 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#root {
+  min-height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Header */
+
+.app-header {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.app-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.home-icon {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  color: #374151;
+}
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-left: 1rem;
+  border: 1px solid #ccc;
+  object-fit: cover;
+}
+
+.logout-button {
+  margin-left: 0.5rem;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background-color: #f87171;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.logout-button:hover {
+  background-color: #ef4444;
+}
+
+
+/* FacultyPage */
+
+.faculty-container {
+  max-width: 1200px;     
+  margin: 0 auto;        
+  padding: 24px 16px; 
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.faculty-title {
+  margin-top: auto;
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.modalContent {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 960px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto; /* ← 重要: フォームが長くても中でスクロールさせる */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* カードの最小サイズ指定 */
+  gap: 50px;
+  justify-items: center;
+}
+
+.review-card {
+  background-color: #f9fafb;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* 固定幅 */
+  height: 220px; /* 固定高さ */
+}
+
+.review-header {
+  background-color: #015eff;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 20px 24px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  max-height: 26px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.review-body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: #ffffff;
+  flex-grow: 1;
+}
+
+.review-info-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+}
+
+.review-info-right {
+  text-align: right;
+  align-self: flex-start;
+}
+
+.review-label {
+  font-weight: 600;
+  color: #333;
+  margin-right: 4px;
+}
+
+.review-stars {
+  font-size: 1.2rem;
+  color: #fbbf24;
+}
+
+/* 詳細モーダルのスタイル */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1000px;
+  height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-content h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  border-bottom: 2px solid #00d5ff;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.modal-content div {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
+  color: #eb4068;
+}
+
+/* ReviewForm */
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.two-columns {
+  flex-direction: row;
+  gap: 16px;
+}
+
+.two-columns > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+input, select, textarea {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 140px;
+  transition: background-color 0.3s;
+}
+
+.review-button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.review-button.submit {
+  background-color: #007bff;
+  color: white;
+}
+
+.review-button:hover {
+  opacity: 0.9;
+}
+
+/* HomePage */
+.home-container {
+  background-image: url(../public/watercolor_00602.jpg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.fac-select {
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 0;
+  margin-bottom: 40px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.fac-button {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.fac-button:hover {
+  background-color: #f0f4f8;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
