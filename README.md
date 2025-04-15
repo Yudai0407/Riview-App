@@ -16,6 +16,5 @@
 + レスポンシブ対応
 
 ## 動作画面
-![Video from awesomescreenshot.com](https://www.awesomescreenshot.com/web/video/thumbnail/38778263?key=2818bac75533a7d9624a37cc74f2f1bd&size=960) 
 
 ## 課題
