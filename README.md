@@ -1,6 +1,8 @@
 # 理view
 
 ## 概要
+東京理科大学学生用講義レビューアプリ
+URL：https://riviewapp.netlify.app/
 
 ## 使用技術
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
