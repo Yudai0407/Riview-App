@@ -7,6 +7,11 @@
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=white)
 
 # 機能
++ Googleログイン・ログアウト
++ 講義レビュー一覧表示
++ 講義レビュー投稿
++ 講義レビュー詳細表示
++ レスポンシブ対応
 
 ## 動作画面
 
