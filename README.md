@@ -8,7 +8,7 @@
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=white)
 
-# 機能
+## 機能
 + Googleログイン・ログアウト
 + 講義レビュー一覧表示
 + 講義レビュー投稿
